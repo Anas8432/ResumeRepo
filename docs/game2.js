@@ -3,9 +3,12 @@ let resetBtn = document.querySelector("#resetBtn");
 let newGameBtn = document.querySelector("#newBtn");
 let msgContainer = document.querySelector(".msgContainer");
 let msg = document.querySelector(".msg");
+let startBtn = document.querySelector("#startBtn");
+let start = document.querySelector(".start"); 
+let main = document.querySelector(".main");
 
 let turnO = true;
-let count = 1;
+let count = 0;
 
 let winPatterns = [
     [0, 1, 2],
@@ -22,19 +25,20 @@ boxes.forEach((box) => {
     box.addEventListener("click", () => {
         if (turnO === true){
             box.innerText = "O";
-            box.style.color = "#b0413e";
+            box.style.color = "green";
             turnO = false;
         } else {
             box.innerText = "X";
-            box.style.color = "darkblue";
+            box.style.color = "orangered";
             turnO = true;
         }
         box.disabled = true;
         checkWinner();
-        if(count === 9){
+        if(count == 8){
+            checkWinner();
             msg.innerText = "Game was Drow";
             msgContainer.classList.remove("hide");
-            count = 1;
+            count = 0;
         } else {
             count++;
         }
@@ -68,7 +72,7 @@ const checkWinner = () => {
         let pos2Val = boxes[pattern[1]].innerText; 
         let pos3Val = boxes[pattern[2]].innerText;
         if (pos1Val != "" && pos2Val != "" && pos3Val != ""){
-            if (pos1Val === pos2Val && pos2Val === pos3Val) {
+            if (pos1Val == pos2Val && pos2Val == pos3Val) {
                 showWinner(pos1Val);
             }
         }
@@ -79,9 +83,17 @@ const resetGame = () => {
     turnO = true;
     enableBoxes();
     msgContainer.classList.add("hide");
-    count = 1;
+    count = 0;
+};
+
+
+const startGame = () => {
+    main.classList.remove("hide");
+    start.classList.add("hide");
+    
 };
 
 newGameBtn.addEventListener("click", resetGame);
 resetBtn.addEventListener("click", resetGame);
+startBtn.addEventListener("click", startGame);
 
