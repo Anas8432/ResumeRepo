@@ -39,6 +39,7 @@ body {
     color: #fff;
     border-radius: 1rem;
     border: none;
+    margin-bottom: 10px;
 }
 #newBtn {
     padding: 1rem;
@@ -51,6 +52,9 @@ body {
 .msg {
     color: #ffffc7;
     font-size: 8vmin;
+    background-color: #020227;
+    padding: 120px 70px;
+    border-radius: 3rem;
 }
 .msgContainer {
     height: 100vmin;
